@@ -4,6 +4,9 @@ A service to very naively create "TimeSlots" in an imaginary calendar for a spec
 ## Required
 [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download)
 
+### Additional for testing the service
+[Postman collection](https://www.getpostman.com/collections/e6a66681f6aee3ad483c)
+
 ## Running the service
 After cloning the repository the api can be run with 
 
