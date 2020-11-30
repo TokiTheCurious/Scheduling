@@ -5,6 +5,7 @@ using Scheduling.Infrastructure.Business.Results;
 using Scheduling.Infrastructure.Data;
 using Scheduling.Infrastructure.Models;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Scheduling.Tests
@@ -138,8 +139,8 @@ namespace Scheduling.Tests
         public async void DeleteTest_Single_Sucess()
         {
             var expectedResult = new DeleteTimeSlotResult(new[] { StaticTimeSlots.slot_10to1030_user1 });
-
-            _mockRepo.Setup(r => r.FindId(It.IsAny<int>())).ReturnsAsync(StaticTimeSlots.slot_10to1030_user1);
+            expectedResult.DeletedTimeSlots.First().TimeSlotId = 1;
+            _mockRepo.Setup(r => r.FindId(It.IsAny<int>())).ReturnsAsync(expectedResult.DeletedTimeSlots.First());
             _mockRepo.Setup(r => r.Delete(It.IsAny<TimeSlot>())).ReturnsAsync(1);
 
             var result = await BusinessLogic.DeleteId(1);
